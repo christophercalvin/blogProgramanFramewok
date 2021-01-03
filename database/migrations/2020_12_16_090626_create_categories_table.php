@@ -15,12 +15,15 @@ class CreateCategoriesTable extends Migration
     {
         Schema::create('categories', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->string('gambar_kategori')->nullable();
             $table->string('nama')->nullable();
             $table->longtext('deskripsi')->nullable();
-            $table->integer('parent_id')->nullable();
             $table->string('slug')->nullable();
             $table->timestamps();
+
+
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

@@ -84,6 +84,7 @@ class BlogController extends Controller
      */
     public function edit($id)
     {
+        $params['user_id'] = Auth::user()->id;
         $categories=Category::select('id', 'nama')->get();
         $artikel=Blog::find($id);
 
@@ -102,6 +103,7 @@ class BlogController extends Controller
     public function update(BlogRequest $request, $id)
     {
         $params = $request->except('_token'); 
+        $params['user_id'] = Auth::user()->id;
                 
         if($request->has('gambar')){    
             $gambar=$request->file('gambar');
@@ -127,6 +129,7 @@ class BlogController extends Controller
                 'judul'=>$request->judul,
                 'deskripsi' => $request->deskripsi,
                 'id_categories' => $request->id_categories,
+                'user_id' => $params['user_id']= Auth::user()->id,
             ]);
             
         }
@@ -151,3 +154,4 @@ class BlogController extends Controller
 		return redirect('admin/Blog');
     }
 }
+

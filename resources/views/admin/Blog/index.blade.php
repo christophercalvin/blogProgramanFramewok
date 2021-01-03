@@ -38,6 +38,7 @@
                                         <td>{{ ($data->created_at) }} </td>
                                         <td>{{ ($data->updated_at) }} </td>
                                         <td>
+                                        <a href="{{ url('blog/'. $data->id) }}" class="btn btn-primary btn-sm">Baca</a>
                                         <a href="{{ url('admin/Blog/'. $data->id.'/edit') }}" class="btn btn-warning btn-sm">Ubah</a>
                                             
                                             {!! Form::open(['url' => 'admin/Blog/'. $data->id, 'class' => 'delete', 'style' => 'display:inline-block']) !!}

@@ -14,8 +14,9 @@
                         <table class="table table-bordered table-stripped">
                             <thead>
                                 <th>ID</th>
-                                <th> Gambar Kategori </th>
-                                <th>Nama</th>
+                                <th>Gambar Kategori </th>
+                                <th>Nama Kategori</th>
+                                <th>Pengubah Terakhir</th>
                                 <th>Deskripsi</th>
                                 <th>Tanggal Dibuat</th>
                                 <th>Perubahan Terakhir</th>
@@ -30,10 +31,12 @@
 						                    <img src="{{ asset('storage/'.$data->gambar_kategori) }}" alt="{{ $data->id }}" style="width:100px">
                                         </td>
                                         <td>{{ $data->nama }}</td>
+                                        <td>{{ $data->user->name}}</td>
                                         <td>{!! Str::words($data->deskripsi,15, '...')!!}</td>
                                         <td>{{ ($data->created_at) }} </td>
                                         <td>{{ ($data->updated_at) }} </td>
                                         <td>
+                                        <a href="{{ url('kategori/'. $data->id) }}" class="btn btn-primary btn-sm">Baca</a>
                                         <a href="{{ url('admin/categories/'. $data->id.'/edit') }}" class="btn btn-warning btn-sm">Ubah</a>
                                             
                                             {!! Form::open(['url' => 'admin/categories/'. $data->id, 'class' => 'delete', 'style' => 'display:inline-block']) !!}
@@ -44,7 +47,7 @@
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="7"><center>Kategori Kosong, Silahkan Buat Kategori Baru! </center></td>
+                                        <td colspan="8"><center>Kategori Kosong, Silahkan Buat Kategori Baru! </center></td>
                                     </tr>
                                 @endforelse
                             </tbody>

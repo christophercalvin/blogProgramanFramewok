@@ -8,6 +8,7 @@ use App\Models\Category;
 
 use Str;
 use Session;
+use Auth;
 
 class Categories extends Controller
 {
@@ -49,6 +50,7 @@ class Categories extends Controller
     {      
         
         $params = $request->except('_token');
+        $params['user_id'] = Auth::user()->id;
         
         $gambar_kategori=$request->file('gambar_kategori');
         $name=time();
@@ -58,7 +60,6 @@ class Categories extends Controller
         $filePath=$gambar_kategori->storeAs($folder, $fileName, 'public');
 
         $params['slug'] = Str::slug($params['nama']);
-        $params['parent_id'] = 0;
         $params['gambar_kategori'] = $filePath;
 
         if (Category::create($params)) {
@@ -106,6 +107,7 @@ class Categories extends Controller
     public function update(CategoryRequest $request, $id)
     {
         $params = $request->except('_token');
+        $params['user_id'] = Auth::user()->id;
         
         if($request->has('gambar_kategori')){
             $gambar_kategori=$request->file('gambar_kategori');
@@ -116,12 +118,11 @@ class Categories extends Controller
             $filePath=$gambar_kategori->storeAs($folder, $fileName, 'public');
     
             $params['slug'] = Str::slug($params['nama']);
-            $params['parent_id'] = 0;
             $params['gambar_kategori'] = $filePath;
             
             $category = Category::findOrFail($id);
             if ($category->update($params)) {
-                Session::flash('success', 'Berhasil Membuat Kategori Baru!');
+                Session::flash('success', 'Berhasil Mengubah Kategori!');
             }
         }
         else{
@@ -129,6 +130,7 @@ class Categories extends Controller
             $category->update([
                 'nama'=>$request->nama,
                 'deskripsi' => $request->deskripsi,
+                'user_id' => $params['user_id']= Auth::user()->id,
             ]);
 
             

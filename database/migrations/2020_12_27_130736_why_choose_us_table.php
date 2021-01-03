@@ -15,8 +15,12 @@ class WhyChooseUsTable extends Migration
     {
         Schema::create('why_choose_us', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->longtext('deskripsi')->nullable();
             $table->timestamps();
+
+
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

@@ -8,6 +8,7 @@ use App\Models\WhyChooseUs;
 
 use Str;
 use Session;
+use Auth;
 
 class WhyChooseUsController extends Controller
 {
@@ -41,6 +42,7 @@ class WhyChooseUsController extends Controller
     public function store(WhyChooseUsRequest $request)
     {
         $params = $request->except('_token');
+        $params['user_id'] = Auth::user()->id;
 
         if (WhyChooseUs::create($params)) {
             Session::flash('success', 'Berhasil Membuat Konten Laman About Us Baru');
@@ -84,6 +86,7 @@ class WhyChooseUsController extends Controller
     public function update(WhyChooseUsRequest $request, $id)
     {
         $params = $request->except('_token');
+        $params['user_id'] = Auth::user()->id;
 
         $WhyChooseUs = WhyChooseUs::findOrFail($id);
         if ($WhyChooseUs->update($params)) {

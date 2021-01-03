@@ -23,6 +23,8 @@ class CreateBlogsTable extends Migration
     
     
                 $table->foreign('user_id')->references('id')->on('users');
+                $table->foreign('id_categories')->references('id')->on('categories');
+                
         });
     }
 

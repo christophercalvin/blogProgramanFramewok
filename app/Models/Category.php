@@ -11,12 +11,8 @@ class Category extends Model
         'nama',
         'deskripsi',
         'slug',
-        'parent_id',
+        'user_id',
     ];
-
-    public function childs(){
-        return $this->HasMany('App\Models\Category', 'parent_id');
-    }
 
     public function parent(){
         return $this->belongsTo('App\Models\Category', 'parent_id');
@@ -25,6 +21,11 @@ class Category extends Model
     public function blogs()
     {
         return $this->hasMany(\App\Models\Blog::class, 'id_categories', 'id');
+    }
+
+    public function user()
+	{
+		return $this->belongsTo(\App\User::class, 'user_id', 'id');
     }
 
 }

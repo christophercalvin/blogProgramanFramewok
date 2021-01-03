@@ -24,13 +24,10 @@ class CategoryRequest extends FormRequest
      */
     public function rules()
     {
-        $parentId = (int) $this->get('parent_id');
         $id = (int) $this->get('id');
 
-        if ($this->method() == 'PUT') {
-            if ($parentId > 0) {
-                $nama = 'required|unique:categories,nama,'.$id.',id,parent_id,'.$parentId;
-            } else {
+        if ($this->method() == 'PUT') { 
+            {
                 $nama = 'required|unique:categories,nama,'.$id;
                 $deskripsi = 'required';
                 $gambar_kategori = 'image|mimes:jpeg,png,jpg,gif|max:2048';
@@ -39,7 +36,7 @@ class CategoryRequest extends FormRequest
             $slug = 'unique:categories,slug,'.$id;
 
         } else {
-            $nama = 'required|unique:categories,nama,NULL,id,parent_id,'.$parentId;
+            $nama = 'required|unique:categories,nama,NULL,id';
             $slug = 'unique:categories,slug';
             $deskripsi = 'required';
             $gambar_kategori = 'required|image|mimes:jpeg,png,jpg,gif|max:2048';

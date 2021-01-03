@@ -14,6 +14,7 @@
                             <thead>
                                 <th>Paragraph</th>
                                 <th>Deskripsi</th>
+                                <th>Pengubah Terakhir</th>
                                 <th>Tanggal Dibuat</th>
                                 <th>Perubahan Terakhir</th>
                                 <th>Action</th>
@@ -23,20 +24,22 @@
                                     <tr>
                                         <td>{{ $data->id }}</td>
                                         <td>{!! Str::words($data->deskripsi,15, '...')!!}</td>
+                                        <td> {{ ($data->user->name)}}</td>
                                         <td>{{ ($data->created_at) }} </td>
                                         <td>{{ ($data->updated_at) }} </td>
                                         <td>
+                                        <a href="{{ url('whychoose') }}" class="btn btn-primary btn-sm">Baca</a>
                                         <a href="{{ url('admin/WhyChooseUs/'. $data->id.'/edit') }}" class="btn btn-warning btn-sm">Ubah</a>
                                             
                                             {!! Form::open(['url' => 'admin/WhyChooseUs/'. $data->id, 'class' => 'delete', 'style' => 'display:inline-block']) !!}
                                             {!! Form::hidden('_method', 'DELETE') !!}
-                                            {!! Form::submit('HAPUS CONTENT INI', ['class' => 'btn btn-danger btn-sm']) !!}
+                                            {!! Form::submit('HAPUS', ['class' => 'btn btn-danger btn-sm']) !!}
                                             {!! Form::close() !!}
                                         </td>
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="6"><center>Isi Paragraph Kosong, Silahkan Buat Paragraph Baru Baru! </center></td>
+                                        <td colspan="7"><center>Isi Paragraph Kosong, Silahkan Buat Paragraph Baru Baru! </center></td>
                                     </tr>
                                 @endforelse
                             </tbody>

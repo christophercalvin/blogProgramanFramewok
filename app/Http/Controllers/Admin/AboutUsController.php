@@ -8,6 +8,7 @@ use App\Models\AboutUs;
 
 use Str;
 use Session;
+use Auth;
 
 class AboutUsController extends Controller
 {
@@ -41,6 +42,7 @@ class AboutUsController extends Controller
     public function store(AboutUsRequest $request)
     {
         $params = $request->except('_token');
+        $params['user_id'] = Auth::user()->id;
 
         if (AboutUs::create($params)) {
             Session::flash('success', 'Berhasil Membuat Konten Laman About Us Baru');
@@ -84,6 +86,7 @@ class AboutUsController extends Controller
     public function update(AboutUsRequest $request, $id)
     {
         $params = $request->except('_token');
+        $params['user_id'] = Auth::user()->id;
 
         $AboutUs = AboutUs::findOrFail($id);
         if ($AboutUs->update($params)) {
