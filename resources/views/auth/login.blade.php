@@ -38,6 +38,14 @@
                                 @enderror
                             </div>
                         </div>
+                        
+                        <div class="form-group row">
+                            <p> email : admin@example.com 
+                            <br>
+                             password : admin
+                            <br>
+                            url : uas/public/admin/dashboard </p>
+                        </div>
 
                         <div class="form-group row">
                             <div class="col-md-6 offset-md-4">

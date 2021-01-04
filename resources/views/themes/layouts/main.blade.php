@@ -46,12 +46,8 @@
                 </div>
             </div>
             <div>
-                <h3>Bagikan pemikiran Anda!</h3>
-                <p>Mari berbagi dengan kami kami juga membutuhkan kalian</p>
-                <form action="#">
-                    <label for="subscribe"><input type="text" id="subscribe" maxlength="30" value="" /></label>
-                    <input class="submit" type="submit" value="" />
-                </form>
+                <h3>Anda Admin?</h3>
+                <a href="{{ url('login') }}">Login Disini</a>
                 <p>Copyright &copy; 2011 Ecothunder Incorporated <br />LRP 727 6783 83839 All rights reserved</p>
             </div>
         </div>

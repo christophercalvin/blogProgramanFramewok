@@ -21,7 +21,7 @@
                                     <tr>
                                         <td> Pada Tanggal {{ $data->created_at }}, {{ $data->user->name }} menerbitkan pos baru berjudul "{{ $data->judul }}"</td>
                                         <td>
-                                        <a href="{{ url('admin/AboutUs/'. $data->id.'/show') }}" class="btn btn-primary btn-sm">Baca</a>
+                                        <a href="{{ url('blog/'. $data->id) }}" class="btn btn-primary btn-sm">Baca</a>
                                             
                                         </td>
                                     </tr>
