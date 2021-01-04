@@ -16,12 +16,11 @@
             <div id="navigation">
                 <div>
                     <ul>
-                        <li><a href="/index">Home</a></li>
-                        <li><a href="/about">About Us</a></li>
-                        <li><a href="/whychoose">Why choose us</a></li>
-                        <li><a href="/blog">Blog</a></li>
-                        <li><a href="/kategori">Kategori</a></li>
-                        <li><a href="/kategoriShow">Kategori</a></li>
+                        <li><a href="{{ url('index') }}">Home</a></li>
+                        <li><a href="{{ url('about') }}">About Us</a></li>
+                        <li><a href="{{ url('whychoose') }}">Why choose us</a></li>
+                        <li><a href="{{ url('blog') }}">Blog</a></li>
+                        <li><a href="{{ url('kategori') }}">Kategori</a></li>
                     </ul>
                 </div>
             </div>
